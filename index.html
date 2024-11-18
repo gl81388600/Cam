@@ -1,67 +1,59 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Para ti</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f0f0f0;
-      flex-direction: column; /* Para alinear elementos en columna */
-      gap: 10px; /* Espacio entre elementos */
-    }
-
-    .heart {
-      position: relative;
-      width: 100px;
-      height: 90px;
-      animation: latir 1s infinite; /* Animación de latido */
-    }
-
-    .heart:before,
-    .heart:after {
-      position: absolute;
-      content: "";
-      left: 50px;
-      top: 0;
-      width: 50px;
-      height: 80px;
-      background-color: red;
-      border-radius: 50px 50px 0 0;
-      transform: rotate(-45deg);
-      transform-origin: 0 100%;
-    }
-
-    .heart:after {
-      left: 0;
-      transform: rotate(45deg);
-      transform-origin: 100% 100%;
-    }
-
-    @keyframes latir {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    #mensaje {
-      font-size: 20px;
-      text-align: center;
-      display: none; /* Ocultar el mensaje inicialmente */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corazón para Camila</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        .heart {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            transform: rotate(-45deg);
+            margin: 0 auto;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -75px;
+            left: 0;
+        }
+        .heart::after {
+            left: 75px;
+            top: 0;
+        }
+        .name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="heart"></div>
-  <div id="mensaje"></div>
-
-  <script>
-    setTimeout(function() {
-      document.getElementById("mensaje").innerHTML = "¡Hola [Nombre de la chica]! <br> Espero que te guste esta pequeña sorpresa.";
-      document.getElementById("mensaje").style.display = "block";
-    }, 2000); // Mostrar el mensaje después de 2 segundos
-  </script>
+    <div class="heart">
+        <div class="name">Camila</div>
+    </div>
 </body>
 </html>
