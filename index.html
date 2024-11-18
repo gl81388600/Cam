@@ -16,10 +16,13 @@
             font-family: Arial, sans-serif;
             color: #333;
         }
+        .heart-container {
+            position: relative;
+        }
         .heart {
             position: relative;
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             background-color: red;
             transform: rotate(-45deg);
             animation: heartbeat 1s infinite;
@@ -28,26 +31,26 @@
         .heart::after {
             content: "";
             position: absolute;
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             background-color: red;
             border-radius: 50%;
         }
         .heart::before {
-            top: -125px;
+            top: -150px;
             left: 0;
         }
         .heart::after {
-            left: 125px;
+            left: 150px;
             top: 0;
         }
         .name {
             position: absolute;
-            top: 50%;
+            top: 55%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) rotate(45deg);
             color: white;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             text-align: center;
         }
@@ -68,8 +71,10 @@
     </style>
 </head>
 <body>
-    <div class="heart">
-        <div class="name">Camila</div>
+    <div class="heart-container">
+        <div class="heart">
+            <div class="name">Camila</div>
+        </div>
     </div>
     <div class="description">Me encantas</div>
 </body>
