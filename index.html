@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Corazón para Camila</title>
+  <title>Para ti</title>
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f0f0f0; /* Color de fondo opcional */
+      background-color: #f0f0f0;
+      flex-direction: column; /* Para alinear elementos en columna */
+      gap: 10px; /* Espacio entre elementos */
     }
 
     .heart {
       position: relative;
-      width: 200px; /* Ajusta el tamaño del corazón */
-      height: 180px; 
+      width: 100px;
+      height: 90px;
+      animation: latir 1s infinite; /* Animación de latido */
     }
 
     .heart:before,
     .heart:after {
       position: absolute;
       content: "";
-      left: 100px;
+      left: 50px;
       top: 0;
-      width: 100px;
-      height: 160px;
+      width: 50px;
+      height: 80px;
       background-color: red;
-      border-radius: 100px 100px 0 0;
+      border-radius: 50px 50px 0 0;
       transform: rotate(-45deg);
       transform-origin: 0 100%;
     }
@@ -37,19 +40,28 @@
       transform-origin: 100% 100%;
     }
 
-    .name {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 24px; /* Ajusta el tamaño de la letra */
-      color: white;
+    @keyframes latir {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    #mensaje {
+      font-size: 20px;
+      text-align: center;
+      display: none; /* Ocultar el mensaje inicialmente */
     }
   </style>
 </head>
 <body>
-  <div class="heart">
-    <div class="name">Camila</div>
-  </div>
+  <div class="heart"></div>
+  <div id="mensaje"></div>
+
+  <script>
+    setTimeout(function() {
+      document.getElementById("mensaje").innerHTML = "¡Hola [Nombre de la chica]! <br> Espero que te guste esta pequeña sorpresa.";
+      document.getElementById("mensaje").style.display = "block";
+    }, 2000); // Mostrar el mensaje después de 2 segundos
+  </script>
 </body>
 </html>
