@@ -12,12 +12,8 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #fef3f3;
-            font-family: Arial, sans-serif;
-            color: #333;
-        }
-        .heart-container {
-            position: relative;
+            background-color: #fff0f5;
+            font-family: 'Arial', sans-serif;
         }
         .heart {
             position: relative;
@@ -41,24 +37,21 @@
             left: 0;
         }
         .heart::after {
-            left: 150px;
             top: 0;
+            left: 150px;
+        }
+        .text-container {
+            text-align: center;
+            margin-top: 20px;
         }
         .name {
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(45deg);
-            color: white;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
-            text-align: center;
+            color: #333;
         }
         .description {
-            margin-top: 20px;
             font-size: 24px;
-            font-weight: bold;
-            color: #444;
+            color: #555;
         }
         @keyframes heartbeat {
             0%, 100% {
@@ -71,11 +64,10 @@
     </style>
 </head>
 <body>
-    <div class="heart-container">
-        <div class="heart">
-            <div class="name">Camila</div>
-        </div>
+    <div class="heart"></div>
+    <div class="text-container">
+        <div class="name">Camila</div>
+        <div class="description">Me encantas</div>
     </div>
-    <div class="description">Me encantas</div>
 </body>
 </html>
