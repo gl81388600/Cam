@@ -17,37 +17,38 @@
         }
         .heart {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             background-color: red;
             transform: rotate(-45deg);
             animation: heartbeat 1s infinite;
+            margin-bottom: 30px; /* Espacio entre el corazón y el texto */
         }
         .heart::before,
         .heart::after {
             content: "";
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             background-color: red;
             border-radius: 50%;
         }
         .heart::before {
-            top: -150px;
+            top: -125px;
             left: 0;
         }
         .heart::after {
             top: 0;
-            left: 150px;
+            left: 125px;
         }
         .text-container {
             text-align: center;
-            margin-top: 20px;
         }
         .name {
             font-size: 36px;
             font-weight: bold;
             color: #333;
+            margin-bottom: 10px;
         }
         .description {
             font-size: 24px;
