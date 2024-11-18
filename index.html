@@ -3,41 +3,53 @@
 <head>
   <title>Corazón para Camila</title>
   <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0; /* Color de fondo opcional */
+    }
+
     .heart {
       position: relative;
-      width: 100px;
-      height: 90px;
+      width: 200px; /* Ajusta el tamaño del corazón */
+      height: 180px; 
     }
+
     .heart:before,
     .heart:after {
       position: absolute;
       content: "";
-      left: 50px;
+      left: 100px;
       top: 0;
-      width: 50px;
-      height: 80px;
+      width: 100px;
+      height: 160px;
       background-color: red;
-      border-radius: 50px 50px 0 0;
+      border-radius: 100px 100px 0 0;
       transform: rotate(-45deg);
       transform-origin: 0 100%;
     }
+
     .heart:after {
       left: 0;
       transform: rotate(45deg);
       transform-origin: 100% 100%;
     }
+
     .name {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 18px;
+      font-size: 24px; /* Ajusta el tamaño de la letra */
       color: white;
     }
   </style>
 </head>
 <body>
-  <div class="heart"> 
-    <div class="name">Camila</div> </div> 
+  <div class="heart">
+    <div class="name">Camila</div>
+  </div>
 </body>
 </html>
