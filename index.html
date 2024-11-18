@@ -8,7 +8,7 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
             margin: 0;
@@ -22,7 +22,8 @@
             background-color: red;
             transform: rotate(-45deg);
             animation: heartbeat 1s infinite;
-            margin-bottom: 30px; /* Espacio entre el corazón y el texto */
+            margin-top: 50px; /* Ajusta la posición del corazón */
+            margin-bottom: 50px; /* Espacio entre el corazón y el texto */
         }
         .heart::before,
         .heart::after {
