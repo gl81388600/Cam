@@ -12,14 +12,14 @@ function calculateAmortization() {
   const monthlyPayment = (amount / term).toFixed(2);
   let balance = amount;
 
-  let currentDate = new Date(firstPaymentDate);
+  let currentDate = new Date(firstPaymentDate); // Inicializar con la fecha del primer pago
 
   for (let i = 1; i <= term; i++) {
     // Calcular días entre pagos
-    const previousDate = i === 1 ? disbursementDate : new Date(currentDate);
+    const previousDate = i === 1 ? disbursementDate : new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, firstPaymentDate.getDate());
     const daysBetween = Math.round((currentDate - previousDate) / (1000 * 60 * 60 * 24));
 
-    const interest = (balance * interestRate * daysBetween / 365).toFixed(2); // Interés proporcional anual
+    const interest = (balance * interestRate * daysBetween / 365).toFixed(2);
     const insurance = (balance * insuranceRate).toFixed(2);
     const totalPayment = (parseFloat(monthlyPayment) + parseFloat(interest) + parseFloat(insurance)).toFixed(2);
     const newBalance = (balance - monthlyPayment).toFixed(2);
@@ -41,8 +41,7 @@ function calculateAmortization() {
 
     balance -= monthlyPayment;
 
-    // Avanzar al siguiente mes, respetando el día del primer pago
+    // Avanzar al siguiente mes, manteniendo el día del primer pago
     currentDate.setMonth(currentDate.getMonth() + 1);
-    currentDate.setDate(firstPaymentDate.getDate());
   }
 }
