@@ -27,16 +27,13 @@
   <h1>Calculadora de Amortización de Préstamos</h1>
   <form id="loanForm">
     <label for="amount">Monto del Préstamo:</label>
-    <input type="number" id="amount" required><br><br>
+    <input type="number" id="amount" step="0.01" required><br><br>
 
     <label for="interestRate">Tasa de Interés (%):</label>
     <input type="number" id="interestRate" step="0.01" required><br><br>
 
-    <label for="lateInterestRate">Tasa de Interés Moratorio (%):</label>
-    <input type="number" id="lateInterestRate" step="0.01"><br><br>
-
     <label for="insuranceRate">Tasa de Seguro (%):</label>
-    <input type="number" id="insuranceRate" step="0.01" value="0.17" readonly><br><br>
+    <input type="number" id="insuranceRate" step="0.01" required><br><br>
 
     <label for="disbursementDate">Fecha de Desembolso:</label>
     <input type="date" id="disbursementDate" required><br><br>
