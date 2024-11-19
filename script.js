@@ -1,47 +1,46 @@
-document.getElementById("loan-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+function calculateAmortization() {
+  const amount = parseFloat(document.getElementById("amount").value);
+  const interestRate = parseFloat(document.getElementById("interestRate").value) / 100;
+  const insuranceRate = parseFloat(document.getElementById("insuranceRate").value) / 100;
+  const disbursementDate = new Date(document.getElementById("disbursementDate").value);
+  const firstPaymentDate = new Date(document.getElementById("firstPaymentDate").value);
+  const term = parseInt(document.getElementById("term").value);
 
-  const loanAmount = parseFloat(document.getElementById("loan-amount").value);
-  const interestRate = parseFloat(document.getElementById("interest-rate").value) / 100;
-  const insuranceRate = parseFloat(document.getElementById("insurance-rate").value) / 100;
-  const disbursementDate = new Date(document.getElementById("disbursement-date").value);
-  const firstPaymentDate = new Date(document.getElementById("first-payment-date").value);
-  const loanTerm = parseInt(document.getElementById("loan-term").value);
+  const amortizationTable = document.getElementById("amortizationTable");
+  amortizationTable.innerHTML = "";
 
-  let balance = loanAmount;
-  const monthlyInstallment = loanAmount / loanTerm;
+  const monthlyPayment = (amount / term).toFixed(2);
+  let balance = amount;
+  let currentDate = new Date(firstPaymentDate);
 
-  const tableBody = document.querySelector("#amortization-table tbody");
-  tableBody.innerHTML = "";
+  for (let i = 1; i <= term; i++) {
+    const previousDate = i === 1 ? disbursementDate : new Date(currentDate);
+    const daysBetween = Math.floor((currentDate - previousDate) / (1000 * 60 * 60 * 24));
 
-  for (let i = 0; i < loanTerm; i++) {
-    const paymentDate = new Date(firstPaymentDate);
-    paymentDate.setMonth(paymentDate.getMonth() + i);
+    const interest = (balance * interestRate * daysBetween / 30).toFixed(2);
 
-    const previousDate = i === 0 ? disbursementDate : new Date(firstPaymentDate);
-    previousDate.setMonth(previousDate.getMonth() + i - 1);
+    let insurance = (balance * insuranceRate).toFixed(2);
+    if (insurance < 2) insurance = 2.00;
 
-    const daysBetween = Math.ceil((paymentDate - previousDate) / (1000 * 60 * 60 * 24));
+    const totalPayment = (parseFloat(monthlyPayment) + parseFloat(interest) + parseFloat(insurance)).toFixed(2);
+    const newBalance = (balance - monthlyPayment).toFixed(2);
 
-    const insurance = Math.max(balance * insuranceRate, 2);
-    const interest = (balance * interestRate * daysBetween) / 30;
-    const totalPayment = monthlyInstallment + insurance + interest;
-    const newBalance = balance - monthlyInstallment;
-
+    // Add row to the table
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${i + 1}</td>
-      <td>${paymentDate.toLocaleDateString()}</td>
+      <td>${i}</td>
+      <td>${currentDate.toLocaleDateString()}</td>
       <td>${daysBetween}</td>
       <td>${balance.toFixed(2)}</td>
-      <td>${monthlyInstallment.toFixed(2)}</td>
-      <td>${insurance.toFixed(2)}</td>
-      <td>${interest.toFixed(2)}</td>
-      <td>${totalPayment.toFixed(2)}</td>
-      <td>${newBalance.toFixed(2)}</td>
+      <td>${monthlyPayment}</td>
+      <td>${insurance}</td>
+      <td>${interest}</td>
+      <td>${totalPayment}</td>
+      <td>${newBalance}</td>
     `;
-    tableBody.appendChild(row);
+    amortizationTable.appendChild(row);
 
-    balance = newBalance;
+    balance -= monthlyPayment;
+    currentDate.setMonth(currentDate.getMonth() + 1);
   }
-});
+}
