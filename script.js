@@ -3,7 +3,7 @@ document.getElementById("loan-form").addEventListener("submit", function (e) {
 
   // Obtener datos del formulario
   const loanAmount = parseFloat(document.getElementById("loan-amount").value);
-  const interestRate = parseFloat(document.getElementById("interest-rate").value) / 100; // Interés mensual
+  const interestRate = parseFloat(document.getElementById("interest-rate").value) / 100; // 4.1% anual
   const insuranceRate = 0.0017; // 0.17% fijo
   const disbursementDate = new Date(document.getElementById("disbursement-date").value);
   const firstPaymentDate = new Date(document.getElementById("first-payment-date").value);
@@ -23,16 +23,15 @@ document.getElementById("loan-form").addEventListener("submit", function (e) {
     const previousDate = i === 0 ? disbursementDate : new Date(firstPaymentDate);
     previousDate.setMonth(previousDate.getMonth() + i - 1);
 
-    const daysBetween = Math.ceil(
-      (paymentDate - previousDate) / (1000 * 60 * 60 * 24)
-    );
+    // Calcular días entre pagos
+    const daysBetween = Math.ceil((paymentDate - previousDate) / (1000 * 60 * 60 * 24));
 
-    // Cálculo del seguro
+    // Cálculo del seguro basado en el saldo inicial
     let insurance = balance * insuranceRate;
-    insurance = insurance < 2 ? 2 : insurance; // Si el seguro es menor a 2, se ajusta a 2
+    insurance = insurance < 2 ? 2 : insurance; // Si es menor a 2, ajustar a 2
 
-    // Cálculo del interés (4.1% mensual)
-    const interest = balance * interestRate;
+    // Cálculo del interés basado en días y saldo inicial
+    const interest = (balance * interestRate * daysBetween) / 30;
 
     // Total a pagar
     const totalPayment = monthlyInstallment + insurance + interest;
