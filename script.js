@@ -19,7 +19,7 @@ function calculateAmortization() {
     const previousDate = i === 1 ? disbursementDate : new Date(currentDate);
     const daysBetween = Math.floor((currentDate - previousDate) / (1000 * 60 * 60 * 24));
 
-    const interest = (balance * interestRate * daysBetween / 30).toFixed(2);
+    const interest = (balance * interestRate * daysBetween / 365).toFixed(2); // Interés proporcional anual
     let insurance = (balance * insuranceRate).toFixed(2);
     if (insurance < 2) insurance = 2.00;
 
