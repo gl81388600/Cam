@@ -41,6 +41,12 @@ function calculateAmortization() {
     amortizationTable.appendChild(row);
 
     balance -= monthlyPayment;
-    currentDate.setMonth(currentDate.getMonth() + 1);
+
+    // Avanzar al próximo mes, manteniendo el mismo día del mes
+    const nextMonth = currentDate.getMonth() + 1;
+    currentDate.setMonth(nextMonth);
+    if (currentDate.getDate() !== firstPaymentDate.getDate()) {
+      currentDate.setDate(firstPaymentDate.getDate());
+    }
   }
 }
