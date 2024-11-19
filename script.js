@@ -17,12 +17,10 @@ function calculateAmortization() {
   for (let i = 1; i <= term; i++) {
     // Calcular días entre pagos
     const previousDate = i === 1 ? disbursementDate : new Date(currentDate);
-    const daysBetween = Math.floor((currentDate - previousDate) / (1000 * 60 * 60 * 24));
+    const daysBetween = Math.round((currentDate - previousDate) / (1000 * 60 * 60 * 24));
 
     const interest = (balance * interestRate * daysBetween / 365).toFixed(2); // Interés proporcional anual
-    let insurance = (balance * insuranceRate).toFixed(2);
-    if (insurance < 2) insurance = 2.00;
-
+    const insurance = (balance * insuranceRate).toFixed(2);
     const totalPayment = (parseFloat(monthlyPayment) + parseFloat(interest) + parseFloat(insurance)).toFixed(2);
     const newBalance = (balance - monthlyPayment).toFixed(2);
 
