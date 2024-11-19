@@ -1,53 +1,57 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amortización de Préstamos</title>
+  <title>Calculadora de Amortización</title>
   <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
-    table, th, td {
-      border: 1px solid black;
+    table {
+      border-collapse: collapse;
+      width: 100%;
     }
     th, td {
+      border: 1px solid black;
       padding: 8px;
       text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
     }
   </style>
 </head>
 <body>
   <h1>Calculadora de Amortización de Préstamos</h1>
+  <form id="loanForm">
+    <label for="amount">Monto del Préstamo:</label>
+    <input type="number" id="amount" required><br><br>
 
-  <form id="loan-form">
-    <label for="loan-amount">Monto del Préstamo:</label>
-    <input type="number" id="loan-amount" required><br><br>
+    <label for="interestRate">Tasa de Interés (%):</label>
+    <input type="number" id="interestRate" step="0.01" required><br><br>
 
-    <label for="interest-rate">Tasa de Interés (%):</label>
-    <input type="number" id="interest-rate" step="0.01" required><br><br>
+    <label for="lateInterestRate">Tasa de Interés Moratorio (%):</label>
+    <input type="number" id="lateInterestRate" step="0.01"><br><br>
 
-    <label for="late-interest-rate">Tasa de Interés Moratorio (%):</label>
-    <input type="number" id="late-interest-rate" step="0.01" required><br><br>
+    <label for="insuranceRate">Tasa de Seguro (%):</label>
+    <input type="number" id="insuranceRate" step="0.01" value="0.17" readonly><br><br>
 
-    <label for="insurance-rate">Tasa de Seguro (%):</label>
-    <input type="number" id="insurance-rate" step="0.01" required><br><br>
+    <label for="disbursementDate">Fecha de Desembolso:</label>
+    <input type="date" id="disbursementDate" required><br><br>
 
-    <label for="disbursement-date">Fecha de Desembolso:</label>
-    <input type="date" id="disbursement-date" required><br><br>
+    <label for="firstPaymentDate">Fecha del Primer Pago:</label>
+    <input type="date" id="firstPaymentDate" required><br><br>
 
-    <label for="first-payment-date">Fecha del Primer Pago:</label>
-    <input type="date" id="first-payment-date" required><br><br>
+    <label for="term">Plazo (Meses):</label>
+    <input type="number" id="term" required><br><br>
 
-    <label for="loan-term">Plazo (Meses):</label>
-    <input type="number" id="loan-term" required><br><br>
-
-    <button type="submit">Calcular</button>
+    <button type="button" onclick="calculateAmortization()">Calcular</button>
   </form>
 
   <h2>Tabla de Amortización</h2>
-  <table id="amortization-table">
+  <table>
     <thead>
       <tr>
         <th>Mes</th>
@@ -61,11 +65,8 @@
         <th>Nuevo Saldo</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Las filas se generarán aquí -->
-    </tbody>
+    <tbody id="amortizationTable"></tbody>
   </table>
-
-  <script src="script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
