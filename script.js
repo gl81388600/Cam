@@ -51,4 +51,4 @@ function calculateAmortization() {
   }
 }
 
-// ... (event listener para calcular los días automáticamente) ...
+// ... (event listener para calcular los días automáticamente) ...ñ
