@@ -49,6 +49,10 @@ function calculateAmortization() {
     }
 
     const totalPayment = monthlyPayment + interest + insurance;
+
+    // Mostrar el saldo inicial actual antes de actualizarlo
+    const initialBalance = balance;
+
     balance = balance - monthlyPayment;
 
     // Agregar fila a la tabla
@@ -56,7 +60,7 @@ function calculateAmortization() {
     row.insertCell().textContent = i;
     row.insertCell().textContent = currentDate.toLocaleDateString();
     row.insertCell().textContent = daysBetween;
-    row.insertCell().textContent = balance.toFixed(2);
+    row.insertCell().textContent = initialBalance.toFixed(2); // Mostrar el saldo inicial actual
     row.insertCell().textContent = monthlyPayment.toFixed(2);
     row.insertCell().textContent = insurance.toFixed(2);
     row.insertCell().textContent = interest.toFixed(2);
