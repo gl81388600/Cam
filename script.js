@@ -8,21 +8,7 @@ function calcularFechaAnterior(fecha) {
 }
 
 function calculateAmortization() {
-  // Obtener valores del formulario
-  const amount = parseFloat(document.getElementById("amount").value);
-  const interestRate = parseFloat(document.getElementById("interestRate").value) / 100;
-  const defaultInterestRate = parseFloat(document.getElementById("defaultInterestRate").value) / 100;
-  const insuranceRate = parseFloat(document.getElementById("insuranceRate").value) / 100;
-  const disbursementDate = new Date(document.getElementById("disbursementDate").value);
-  const firstPaymentDate = new Date(document.getElementById("firstPaymentDate").value);
-  const term = parseInt(document.getElementById("term").value);
-  const days = parseInt(document.getElementById("days").value); // Obtener días del formulario
-
-  // Validar que los campos del formulario tengan valores válidos
-  if (isNaN(amount) || isNaN(interestRate) || isNaN(defaultInterestRate) || isNaN(insuranceRate) || isNaN(term) || isNaN(days) || !disbursementDate || !firstPaymentDate) {
-    alert("Por favor, complete todos los campos del formulario correctamente.");
-    return;
-  }
+  // ... (obtener valores del formulario y validar campos) ...
 
   // Inicializar tabla y variables
   const amortizationTable = document.getElementById("amortizationTable");
@@ -39,10 +25,7 @@ function calculateAmortization() {
       daysBetween = days; // Usar días del formulario para el primer pago
     }
 
-    // Calcular el interés mensual
-    const interest = (initialBalance * interestRate * daysBetween) / 365; // Fórmula corregida
-
-    // Calcular el seguro, asegurando que no sea menor que 2
+    const interest = (initialBalance * interestRate * daysBetween) / 30;
     let insurance = initialBalance * insuranceRate;
     if (insurance < 2) {
       insurance = 2;
@@ -68,15 +51,4 @@ function calculateAmortization() {
   }
 }
 
-// Event listener para calcular los días automáticamente
-const loanForm = document.getElementById('loanForm');
-const disbursementDateInput = document.getElementById('disbursementDate');
-const firstPaymentDateInput = document.getElementById('firstPaymentDate');
-const daysInput = document.getElementById('days');
-
-loanForm.addEventListener('change', () => {
-  const disbursementDate = new Date(disbursementDateInput.value);
-  const firstPaymentDate = new Date(firstPaymentDateInput.value);
-  const daysBetween = Math.round((firstPaymentDate - disbursementDate) / (1000 * 60 * 60 * 24));
-  daysInput.value = daysBetween;
-});
+// ... (event listener para calcular los días automáticamente) ...
