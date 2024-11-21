@@ -10,7 +10,7 @@ function calcularFechaAnterior(fecha) {
 function calculateAmortization() {
   // Obtener valores del formulario
   const amount = parseFloat(document.getElementById("amount").value);
-  const interestRate = parseFloat(document.getElementById("interestRate").value) 1  / 100;
+  const interestRate = parseFloat(document.getElementById("interestRate").value) / 100;
   const defaultInterestRate = parseFloat(document.getElementById("defaultInterestRate").value) / 100;
   const insuranceRate = parseFloat(document.getElementById("insuranceRate").value) / 100;
   const disbursementDate = new Date(document.getElementById("disbursementDate").value);
