@@ -32,11 +32,16 @@ function calculateAmortization() {
     if (i === 1) {
       daysBetween = days; // Usar días del formulario para el primer pago
     }
-    const interest = balance * interestRate * daysBetween / 365;
+
+    // Calcular el interés mensual
+    const interest = balance * interestRate;
+
+    // Calcular el seguro, asegurando que no sea menor que 2
     let insurance = balance * insuranceRate;
     if (insurance < 2) {
       insurance = 2;
     }
+
     const totalPayment = monthlyPayment + interest + insurance;
     balance = balance - monthlyPayment;
 
