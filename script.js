@@ -28,7 +28,7 @@ function calculateAmortization() {
   const amortizationTable = document.getElementById("amortizationTable");
   amortizationTable.innerHTML = "";
   let monthlyPayment = amount / term;
-  let balance = amount;
+  let balance = amount; // Saldo inicial igual al monto del préstamo
   let currentDate = new Date(firstPaymentDate);
 
   // Generar tabla de amortización
@@ -40,7 +40,7 @@ function calculateAmortization() {
     }
 
     // Calcular el interés mensual
-    const interest = balance * interestRate;
+    const interest = (balance * interestRate * daysBetween) / 30; // Fórmula corregida
 
     // Calcular el seguro, asegurando que no sea menor que 2
     let insurance = balance * insuranceRate;
