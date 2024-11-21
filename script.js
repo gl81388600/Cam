@@ -16,28 +16,27 @@ function calculateAmortization() {
   const disbursementDate = new Date(document.getElementById("disbursementDate").value);
   const firstPaymentDate = new Date(document.getElementById("firstPaymentDate").value);
   const term = parseInt(document.getElementById("term").value);
+  const days = parseInt(document.getElementById("days").value); // Obtener días del formulario
 
   // Inicializar tabla y variables
   const amortizationTable = document.getElementById("amortizationTable");
   amortizationTable.innerHTML = "";
   let monthlyPayment = amount / term;
-  let balance = amount; // Saldo inicial igual al monto del préstamo
+  let balance = amount;
   let currentDate = new Date(firstPaymentDate);
 
   // Generar tabla de amortización
   for (let i = 1; i <= term; i++) {
     const previousDate = i === 1 ? disbursementDate : calcularFechaAnterior(currentDate);
     let daysBetween = Math.round((currentDate - previousDate) / (1000 * 60 * 60 * 24));
-
-    // Calcular el interés mensual
-    const interest = balance * interestRate;
-
-    // Calcular el seguro, asegurando que no sea menor que 2
+    if (i === 1) {
+      daysBetween = days; // Usar días del formulario para el primer pago
+    }
+    const interest = balance * interestRate * daysBetween / 365;
     let insurance = balance * insuranceRate;
     if (insurance < 2) {
       insurance = 2;
     }
-
     const totalPayment = monthlyPayment + interest + insurance;
     balance = balance - monthlyPayment;
 
