@@ -18,6 +18,12 @@ function calculateAmortization() {
   const term = parseInt(document.getElementById("term").value);
   const days = parseInt(document.getElementById("days").value); // Obtener días del formulario
 
+  // Validar que los campos del formulario tengan valores válidos
+  if (isNaN(amount) || isNaN(interestRate) || isNaN(defaultInterestRate) || isNaN(insuranceRate) || isNaN(term) || isNaN(days) || !disbursementDate || !firstPaymentDate) {
+    alert("Por favor, complete todos los campos del formulario correctamente.");
+    return;
+  }
+
   // Inicializar tabla y variables
   const amortizationTable = document.getElementById("amortizationTable");
   amortizationTable.innerHTML = "";
