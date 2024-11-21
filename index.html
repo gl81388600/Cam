@@ -16,10 +16,14 @@
     th, td {
       border: 1px solid black;
       padding: 8px;
-      text-align: center;
+      text-align: left; /* Alineación predeterminada a la izquierda */
     }
     th {
       background-color: #f2f2f2;
+      font-weight: bold; /* Encabezados en negrita */
+    }
+    .number { /* Clase para alinear números a la derecha */
+      text-align: right;
     }
   </style>
 </head>
@@ -57,15 +61,15 @@
   <table>
     <thead>
       <tr>
-        <th>Mes</th>
-        <th>Fecha de Pago</th>
-        <th>Días entre Pagos</th>
-        <th>Saldo Inicial</th>
-        <th>Cuota Mensual</th>
-        <th>Seguro</th>
-        <th>Interés</th>
-        <th>Total a Pagar</th>
-        <th>Nuevo Saldo</th>
+        <th><strong>Mes</strong></th>
+        <th><strong>Fecha de Pago</strong></th>
+        <th><strong>Días entre Pagos</strong></th>
+        <th><strong>Saldo Inicial</strong></th>
+        <th><strong>Cuota Mensual</strong></th>
+        <th><strong>Seguro</strong></th>
+        <th><strong>Interés</strong></th>
+        <th><strong>Total a Pagar</strong></th>
+        <th><strong>Nuevo Saldo</strong></th>
       </tr>
     </thead>
     <tbody id="amortizationTable"></tbody>
